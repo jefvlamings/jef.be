@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jef Vlamings</title>
+  <style>
+    :root {
+      --max-width: 720px;
+      --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+                    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+      /* Light theme */
+      --text-color: #2e2a26;
+      --muted-color: #7b6f65;
+      --bg-color: #fdf8f3;
+      --accent-color: #c2a14d;
+      --border-color: #e0dcd5;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --text-color: #eae6dc;
+        --muted-color: #9b9383;
+        --bg-color: #1a1c1d;
+        --accent-color: #c2a14d;
+        --border-color: #3b3632;
+      }
+    }
+
+    body:has(#force-light:checked) {
+      --text-color: #2e2a26;
+      --muted-color: #7b6f65;
+      --bg-color: #fdf8f3;
+      --accent-color: #c2a14d;
+      --border-color: #e0dcd5;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 2rem 1rem;
+      font-family: var(--font-stack);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--bg-color);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.2;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      color: var(--accent-color);
+    }
+
+    p {
+      margin-bottom: 1.25rem;
+    }
+
+    a {
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .muted {
+      color: var(--muted-color);
+    }
+
+    /* Toggle wrapper */
+    .theme-toggle {
+      display: inline-block;
+    }
+
+    /* Hide checkbox */
+    #force-light {
+      display: none;
+    }
+
+    /* Button styling */
+    .theme-button {
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: var(--accent-color);
+      padding: 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .theme-button svg {
+      display: block;
+      stroke: currentColor;
+    }
+
+    /* Icon visibility toggle */
+    .theme-toggle:has(#force-light:checked) #sun {
+      display: inline;
+    }
+
+    .theme-toggle:has(#force-light:checked) #moon {
+      display: none;
+    }
+
+    #sun {
+      display: none;
+    }
+
+    footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.9rem;
+      color: var(--muted-color);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+    <header>
+      <h1>
+          Jef Vlamings
+          <div class="theme-toggle">
+            <input type="checkbox" id="force-light" />
+            <label for="force-light" class="theme-button" accesskey="t" title="(Alt + T)">
+              <svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+              </svg>
+              <svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5" />
+                <line x1="12" y1="1" x2="12" y2="3" />
+                <line x1="12" y1="21" x2="12" y2="23" />
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                <line x1="1" y1="12" x2="3" y2="12" />
+                <line x1="21" y1="12" x2="23" y2="12" />
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+              </svg>
+            </label>
+          </div>
+      </h1>
+
+      <p>
+          I'm a programmer living in Belgium. Passionate about building beautiful things through craftmanship.
+      </p>
+      <p class="muted">
+        <a href="mailto:hallo@jef.be">Send me an email</a>  |
+        <a href="https://github.com/jefvlamings" target="_blank">Github</a>  |
+        <a href="https://x.com/jefvlamings" target="_blank">Twitter/X</a>  |
+        <a href="https://linkedin.com/in/jefvlamings" target="_blank">Linkedin</a> 
+      </p>
+    </header>
+
+    <section>
+      <p><strong>Family man.</strong><br>
+      Married to Lore, proud father of two wonderful kids.</p>
+
+      <p><strong>Programmer.</strong><br>
+      I built my first website on a 486. Bought a second-hand Mac to run Photoshop because I was convinced I’d become the greatest web designer ever.
+      Writing JavaScript to bring my designs to life made me fall in love with programming. That’s when it clicked — design and development can be one and the same.</p>
+
+      <p><strong>Maker.</strong><br>
+      I like my tech simple, stupid, and hackable. There’s something deeply satisfying about cracking open a device and modifying it to do exactly what you need.</p>
+
+      <p><strong>Builder.</strong><br>
+      I enjoy working with my hands to create beautiful things. Recently, I built a garden office — from concrete pad to final coat of paint.</p>
+
+      <p><strong>Business owner.</strong><br>
+      I run a small company called <a href="https://frontier.be" target="_blank">Frontier</a>, building stunning websites for local governments.
+      With our in-house developed, secure, and user-friendly CMS, we help clients navigate their digital transformation.</p>
+
+      <p><strong>Biologist.</strong><br>
+      I hold a Master’s degree in Ecology and Evolutionary Biology. Biology is about wonder — and whenever I’m in awe of nature, I feel the urge to understand it.</p>
+
+      <p>I also brew my own beer, play squash, watch stand-up comedy, enjoy fine dining, love long drives — and much more.</p>
+    </section>
+  </main>
+</body>
+</html>
+
