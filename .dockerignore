@@ -1,0 +1,4 @@
+# Only public/ and docker/ are copied into the image.
+*
+!public/
+!docker/nginx.conf

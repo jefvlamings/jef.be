@@ -1,0 +1,38 @@
+service: jefbe
+image: jefvlamings/jef.be
+
+servers:
+  web:
+    hosts:
+      - web02.frontier.be
+    options:
+      pull: never
+      memory: 64m
+
+ssh:
+  user: deploy
+
+registry:
+  server: localhost:5555
+
+retain_containers: 3
+
+builder:
+  arch: amd64
+  driver: docker
+
+# web02's nginx terminates TLS (its own ACME certificate for jef.be) and proxies
+# to kamal-proxy on loopback. The run block is shared by every app on web02 and
+# must stay identical.
+proxy:
+  host: jef.be
+  app_port: 80
+  ssl: false
+  forward_headers: true
+  healthcheck:
+    path: /up
+  run:
+    bind_ips:
+      - 127.0.0.1
+    http_port: 18080
+    https_port: 18443
