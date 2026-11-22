@@ -12,14 +12,23 @@ servers:
 ssh:
   user: deploy
 
+# Shared private registry on web01 (infrastructure: hosts/web01/README.md).
 registry:
-  server: localhost:5555
+  server: registry.frontier.be
+  username: kamal
+  password:
+    - KAMAL_REGISTRY_PASSWORD
 
 retain_containers: 3
 
+# Build on web02 itself (build02.frontier.be). Keep this remote string
+# identical across the web02 apps so they share one BuildKit builder and cache.
+# local: false is required: Kamal otherwise builds on the deployer's machine
+# whenever its architecture matches (amd64).
 builder:
   arch: amd64
-  driver: docker
+  local: false
+  remote: ssh://deploy@build02.frontier.be
 
 # web02's nginx terminates TLS (its own ACME certificate for jef.be) and proxies
 # to kamal-proxy on loopback. The run block is shared by every app on web02 and
